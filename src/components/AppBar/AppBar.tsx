@@ -7,12 +7,13 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import FormControl from '@mui/material/FormControl'
 import IconSearch from '@mui/icons-material/Search'
+import IconMenuOpen from '@mui/icons-material/MenuOpen'
 import InputAdornment from '@mui/material/InputAdornment'
 
 import { MainContext } from 'src/context/MainContext'
 
 const AppBar = () => {
-  const { setIsDrawerExpanded } = useContext(MainContext)
+  const { isDrawerExpanded, setIsDrawerExpanded } = useContext(MainContext)
 
   return (
     <Stack
@@ -23,7 +24,7 @@ const AppBar = () => {
       className='shadow-md'
     >
       <IconButton onClick={() => setIsDrawerExpanded(state => !state)}>
-        <IconMenu/>
+        { isDrawerExpanded ? <IconMenuOpen/> : <IconMenu/> }
       </IconButton>
 
       <FormControl component='form'>
@@ -33,7 +34,10 @@ const AppBar = () => {
           variant='outlined'
           size='small'
           InputProps={{
-            startAdornment: <InputAdornment position='start'><IconSearch/></InputAdornment>
+            startAdornment: (
+              <InputAdornment position='start'>
+                <IconSearch/>
+              </InputAdornment>)
           }}
         />
       </FormControl>

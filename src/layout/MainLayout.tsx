@@ -27,7 +27,6 @@ const MainLayout = (props: {children: ReactNode}) => {
           {children}
         </Stack>
       </Stack>
-
     </Stack>
   )
 }
