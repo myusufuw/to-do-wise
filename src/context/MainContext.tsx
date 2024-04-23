@@ -6,11 +6,14 @@ import { TypeMainContext, ShowSnackbarFunction } from 'src/constants/types'
 const MainContext = createContext<TypeMainContext>({
   snackbarObject: initialSnackbarObject,
   setSnackbarObject: () => {},
-  showSnackbar: () => {}
+  showSnackbar: () => {},
+  isDrawerExpanded: false,
+  setIsDrawerExpanded: () => {}
 })
 
 const MainContextProvider = (props: {children: ReactNode}) => {
   const [ snackbarObject, setSnackbarObject ] = useState(initialSnackbarObject)
+  const [ isDrawerExpanded, setIsDrawerExpanded ] = useState(false)
 
   const showSnackbar: ShowSnackbarFunction = (severity, message) => {
     setSnackbarObject({
@@ -25,8 +28,9 @@ const MainContextProvider = (props: {children: ReactNode}) => {
     <MainContext.Provider
       value={{
         // SNACKBAR
-        snackbarObject, setSnackbarObject,
-        showSnackbar
+        snackbarObject, setSnackbarObject, showSnackbar,
+        // DRAWER
+        isDrawerExpanded, setIsDrawerExpanded
       }}
     >
       {props.children}

@@ -11,7 +11,9 @@ export type TypeSnackbarObject = {
 export type TypeMainContext = {
  snackbarObject: TypeSnackbarObject,
  setSnackbarObject: Dispatch<SetStateAction<TypeSnackbarObject>>
- showSnackbar: ShowSnackbarFunction
+ showSnackbar: ShowSnackbarFunction,
+ isDrawerExpanded: boolean,
+ setIsDrawerExpanded: Dispatch<SetStateAction<boolean>>
 }
 
 // eslint-disable-next-line no-unused-vars

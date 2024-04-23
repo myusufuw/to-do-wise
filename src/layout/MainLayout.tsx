@@ -2,6 +2,9 @@ import { ReactNode } from 'react'
 
 import Stack from '@mui/material/Stack'
 
+import AppBar from 'src/components/AppBar/AppBar'
+import Drawer from 'src/components/Drawer/Drawer'
+
 const MainLayout = (props: {children: ReactNode}) => {
   const { children } = props
 
@@ -13,19 +16,12 @@ const MainLayout = (props: {children: ReactNode}) => {
       width='100%'
     >
       {/* DRAWER */}
-      <Stack
-        width={250}
-        className='bg-orange-200'
-      >
-        Drawer
-      </Stack>
+      <Drawer/>
 
       {/* CONTENTS */}
       <Stack flex={1}>
         {/* APP BAR */}
-        <Stack height={48} className='bg-green-200'>
-          App Bar
-        </Stack>
+        <AppBar/>
 
         <Stack>
           {children}
