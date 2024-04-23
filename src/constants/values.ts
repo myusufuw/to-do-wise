@@ -1,9 +1,6 @@
 import { TypeSnackbarObject } from './types'
 
-const values = {
-  // FONT FAMILY
-  fontFamily: [ 'Open Sans', 'sans-serif' ].join(',')
-}
+export const fontFamily = [ 'Open Sans', 'sans-serif' ].join(',')
 
 export const initialSnackbarObject:TypeSnackbarObject = {
   open: false,
@@ -11,5 +8,3 @@ export const initialSnackbarObject:TypeSnackbarObject = {
   title: '',
   message: ''
 }
-
-export default values

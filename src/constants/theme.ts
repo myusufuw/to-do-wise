@@ -1,6 +1,6 @@
 import { createTheme, responsiveFontSizes } from '@mui/material'
 
-import values from './values'
+import { fontFamily } from './values'
 
 let customTheme = createTheme({
   components: {
@@ -14,7 +14,7 @@ let customTheme = createTheme({
   },
   spacing: 1,
   typography: {
-    fontFamily: values.fontFamily
+    fontFamily: fontFamily
   }
 })
 
