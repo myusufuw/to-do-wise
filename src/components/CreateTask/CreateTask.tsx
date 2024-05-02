@@ -14,7 +14,7 @@ import { MainContext } from 'src/context/MainContext'
 
 import DatePicker from '../DatePicker/DatePicker'
 
-const CreateToDo = () => {
+const CraeateTask = () => {
   const { taskList, setTaskList, showSnackbar } = useContext(MainContext)
 
   const initialNewTaskForms: TypeTaskList = {
@@ -50,7 +50,7 @@ const CreateToDo = () => {
 
   return (
     <Stack
-      className='bg-neutral-100 rounded shadow-md border-gray-100'
+      className='bg-neutral-100 rounded shadow-md border-gray-100 mb-8'
       border='solid 1px'
       component='form'
       onSubmit={handleSaveNewTask}
@@ -74,11 +74,16 @@ const CreateToDo = () => {
 
       <Stack className='py-3 px-4 flex-row justify-between'>
         <Stack direction='row'>
-          <IconButton disableRipple onClick={() => setIsDatePickerOpen(true)}>
+          <IconButton
+            size='small'
+            disableRipple
+            onClick={() => setIsDatePickerOpen(true)}
+          >
             <IconCalendarMonth color={newTaskForms.dueDate ? 'primary' : 'inherit'}/>
           </IconButton>
 
           <IconButton
+            size='small'
             disableRipple
             onClick={() => handleNewTaskFormChange('isImportant', !newTaskForms.isImportant)}
           >
@@ -90,6 +95,7 @@ const CreateToDo = () => {
           variant='outlined'
           type='submit'
           disabled={!newTaskForms.title}
+          size='small'
         >
           Add
         </Button>
@@ -105,4 +111,4 @@ const CreateToDo = () => {
   )
 }
 
-export default CreateToDo
+export default CraeateTask
