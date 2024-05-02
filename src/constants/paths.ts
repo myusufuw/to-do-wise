@@ -1,7 +1,8 @@
 const paths = {
   task: '/',
   important: '/important',
-  planned: '/planned'
+  planned: '/planned',
+  search: '/search/:query'
 }
 
 export default paths

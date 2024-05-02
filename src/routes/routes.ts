@@ -1,5 +1,6 @@
 import Task from 'src/pages/Task/Task'
 import paths from 'src/constants/paths'
+import Search from 'src/pages/Search/Search'
 import Planned from 'src/pages/Planned/Planned'
 import Important from 'src/pages/Important/Important'
 
@@ -20,6 +21,10 @@ const routes: Route[] = [
   {
     path: paths.important,
     element: Important
+  },
+  {
+    path: paths.search,
+    element: Search
   }
 ]
 

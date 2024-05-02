@@ -1,4 +1,5 @@
-import { useContext } from 'react'
+import { FormEvent, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Stack from '@mui/material/Stack'
 import IconMenu from '@mui/icons-material/Menu'
@@ -14,6 +15,13 @@ import { MainContext } from 'src/context/MainContext'
 
 const AppBar = () => {
   const { isDrawerExpanded, setIsDrawerExpanded } = useContext(MainContext)
+  const navigate = useNavigate()
+
+  const handleSearchTaskList = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const searchElement = document.getElementById('searchElement') as HTMLInputElement | null
+    if (searchElement) navigate(`/search/${searchElement.value}`)
+  }
 
   return (
     <Stack
@@ -27,9 +35,12 @@ const AppBar = () => {
         { isDrawerExpanded ? <IconMenuOpen/> : <IconMenu/> }
       </IconButton>
 
-      <FormControl component='form'>
+      <FormControl
+        component='form'
+        onSubmit={handleSearchTaskList}
+      >
         <TextField
-          name='q'
+          id='searchElement'
           type='search'
           variant='outlined'
           size='small'

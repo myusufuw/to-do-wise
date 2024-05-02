@@ -2,7 +2,8 @@ import { useState, useContext } from 'react'
 
 import Stack from '@mui/material/Stack'
 import Collapse from '@mui/material/Collapse'
-import { IconButton, Typography } from '@mui/material'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
 import IconKeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 
 import { MainContext } from 'src/context/MainContext'
@@ -18,11 +19,14 @@ const TaskList = () => {
   const completedTaskList = taskList?.filter(task => task.isDone)
 
   return (
-    <Stack height='calc(100vh - 280px)' overflow='auto'>
+    <Stack
+      height='calc(100vh - 280px)'
+      overflow='auto'
+    >
       {/* UNCOMPLETED TASK LIST */}
       <>
-        {uncompletedTaskList?.map((item, index) => (
-          <TaskCard key={index} task={item}/>
+        {uncompletedTaskList?.map((task, index) => (
+          <TaskCard key={index} task={task}/>
         ))}
       </>
 
@@ -52,8 +56,8 @@ const TaskList = () => {
 
       <Collapse in={isCompletedTaskListExpanded}>
         <>
-          {completedTaskList?.map((item, index) => (
-            <TaskCard key={index} task={item}/>
+          {completedTaskList?.map((task, index) => (
+            <TaskCard key={index} task={task}/>
           ))}
         </>
       </Collapse>

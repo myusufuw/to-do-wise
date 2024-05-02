@@ -55,7 +55,7 @@ const TaskCard = (props: {task: TypeTaskList}) => {
             <IconCheckCircle color='primary'/> :
             <IconRadioButtonUnchecked color='primary'/> }
         </IconButton>
-        <Typography>
+        <Typography className={`${task.isDone ? 'line-through' : 'no-underline'}`}>
           {task.title}
         </Typography>
       </Stack>
