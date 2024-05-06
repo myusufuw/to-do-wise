@@ -14,7 +14,7 @@ export type TypeTaskList = {
  isImportant: boolean,
  isDone: boolean,
  note: string,
- id: number
+ id: string
 }
 
 export type TypeMainContext = {

@@ -11,6 +11,7 @@ import IconCalendarMonth from '@mui/icons-material/CalendarMonth'
 
 import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
+import { generateRandomId } from 'src/utilities/string'
 
 import DatePicker from '../DatePicker/DatePicker'
 
@@ -23,11 +24,11 @@ const CraeateTask = () => {
     isImportant: false,
     isDone: false,
     note: '',
-    id: Math.floor(Math.random() * 500)
+    id: generateRandomId(8)
   }
 
   const [ isDatePickerOpen, setIsDatePickerOpen ] = useState(false)
-  const [ newTaskForms, setNewTaskForms ] = useState(initialNewTaskForms)
+  const [ newTaskForms, setNewTaskForms ] = useState({ ...initialNewTaskForms })
 
   const handleNewTaskFormChange = (objectName: string, value: string | boolean | Date) => {
     setNewTaskForms(current => ({

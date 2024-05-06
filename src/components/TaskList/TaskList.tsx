@@ -26,7 +26,10 @@ const TaskList = () => {
       {/* UNCOMPLETED TASK LIST */}
       <>
         {uncompletedTaskList?.map((task, index) => (
-          <TaskCard key={index} task={task}/>
+          <TaskCard
+            key={index}
+            task={task}
+          />
         ))}
       </>
 
@@ -51,13 +54,15 @@ const TaskList = () => {
         <Typography>
           Completed ({completedTaskList.length})
         </Typography>
-
       </Stack> }
 
       <Collapse in={isCompletedTaskListExpanded}>
         <>
           {completedTaskList?.map((task, index) => (
-            <TaskCard key={index} task={task}/>
+            <TaskCard
+              key={index}
+              task={task}
+            />
           ))}
         </>
       </Collapse>

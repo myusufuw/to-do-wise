@@ -38,27 +38,27 @@ const Search = () => {
       </Stack>
 
       {/* TASK LIST */}
-      { filteredTaskList && filteredTaskList?.length > 1 &&
-      <Stack
-        height='calc(100vh - 140px)'
-        overflow='auto'
-        width='100%'
-      >
-        {filteredTaskList?.map((task, index) => (
-          <TaskCard key={index} task={task}/>
-        ))}
-      </Stack>}
+      { filteredTaskList && filteredTaskList?.length > 0 &&
+        <Stack
+          height='calc(100vh - 140px)'
+          overflow='auto'
+          width='100%'
+        >
+          {filteredTaskList?.map((task, index) => (
+            <TaskCard key={index} task={task}/>
+          ))}
+        </Stack>}
 
       { filteredTaskList && filteredTaskList?.length < 1 &&
-      <Stack
-        height='calc(100vh - 140px)'
-        alignItems='center'
-        justifyContent='center'
-      >
-        <Typography variant='h6'>
-          Sorry, it seems that nothing was found for your search.
-        </Typography>
-      </Stack> }
+        <Stack
+          height='calc(100vh - 140px)'
+          alignItems='center'
+          justifyContent='center'
+        >
+          <Typography variant='h6'>
+            Sorry, it seems that nothing was found for your search.
+          </Typography>
+        </Stack> }
     </Stack>
   )
 }

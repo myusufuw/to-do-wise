@@ -1,6 +1,7 @@
-import { useContext } from 'react'
+import { useState, useContext, SyntheticEvent } from 'react'
 
 import Stack from '@mui/material/Stack'
+import Drawer from '@mui/material/Drawer'
 import IconStar from '@mui/icons-material/Star'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
@@ -11,11 +12,21 @@ import IconRadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
 import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
 
-const TaskCard = (props: {task: TypeTaskList}) => {
+import DetailTask from '../DetailTask/DetailTask'
+
+type TypeProps = {
+  task: TypeTaskList
+}
+
+const TaskCard = (props: TypeProps) => {
   const { task } = props
   const { taskList, setTaskList } = useContext(MainContext)
 
-  const handleCompleteTaskButtonClick = () => {
+  const [ isDrawerExpanded, setIsDrawerExpanded ] = useState(false)
+  const [ taskId, setTaskId ] = useState('')
+
+  const handleCompleteTaskButtonClick = (event: SyntheticEvent) => {
+    event.stopPropagation()
     const updatedTaskList = taskList.map((currentTask) => {
       if(currentTask.id === task.id) currentTask.isDone = !currentTask.isDone
       return currentTask
@@ -23,7 +34,8 @@ const TaskCard = (props: {task: TypeTaskList}) => {
     setTaskList(updatedTaskList)
   }
 
-  const handleMarkAsImportantButtonClick = () => {
+  const handleMarkAsImportantButtonClick = (event: SyntheticEvent) => {
+    event.stopPropagation()
     const updatedTaskList = taskList.map((currentTask) => {
       if(currentTask.id === task.id) currentTask.isImportant = !currentTask.isImportant
       return currentTask
@@ -31,44 +43,67 @@ const TaskCard = (props: {task: TypeTaskList}) => {
     setTaskList(updatedTaskList)
   }
 
+  const handleTaskCardClick = (event: SyntheticEvent) => {
+    event.stopPropagation()
+    setIsDrawerExpanded(true)
+    setTaskId(task.id)
+  }
+
   return (
-    <Stack
-      className='rounded border-gray-200 shadow'
-      px={16}
-      py={12}
-      mb={12}
-      direction='row'
-      justifyContent='space-between'
-      alignItems='center'
-      border='1px solid'
-    >
+    <>
       <Stack
+        className='rounded border-gray-200 shadow cursor-pointer'
+        px={16}
+        py={12}
+        mb={12}
         direction='row'
+        justifyContent='space-between'
         alignItems='center'
-        spacing={8}
+        border='1px solid'
+        onClick={handleTaskCardClick}
       >
+        <Stack
+          direction='row'
+          alignItems='center'
+          spacing={8}
+        >
+          <IconButton
+            size='small'
+            onClick={handleCompleteTaskButtonClick}
+          >
+            { task.isDone ?
+              <IconCheckCircle color='primary'/> :
+              <IconRadioButtonUnchecked color='primary'/> }
+          </IconButton>
+          <Typography className={`${task.isDone ? 'line-through' : 'no-underline'}`}>
+            {task.title}
+          </Typography>
+        </Stack>
+
         <IconButton
           size='small'
-          onClick={handleCompleteTaskButtonClick}
+          onClick={handleMarkAsImportantButtonClick}
         >
-          { task.isDone ?
-            <IconCheckCircle color='primary'/> :
-            <IconRadioButtonUnchecked color='primary'/> }
+          { task.isImportant ?
+            <IconStar color='primary'/> :
+            <IconStarBorder color='primary'/> }
         </IconButton>
-        <Typography className={`${task.isDone ? 'line-through' : 'no-underline'}`}>
-          {task.title}
-        </Typography>
       </Stack>
 
-      <IconButton
-        size='small'
-        onClick={handleMarkAsImportantButtonClick}
+
+      {/* DETAIL TASK */}
+      <Drawer
+        open={isDrawerExpanded}
+        onClose={() => setIsDrawerExpanded(false)}
+        anchor='right'
       >
-        { task.isImportant ?
-          <IconStar color='primary'/> :
-          <IconStarBorder color='primary'/> }
-      </IconButton>
-    </Stack>
+        <DetailTask
+          taskId={taskId}
+          setIsDrawerExpanded={setIsDrawerExpanded}
+        />
+      </Drawer>
+    </>
+
   )
 }
 
