@@ -2,17 +2,18 @@ import { useState, useContext, SyntheticEvent } from 'react'
 
 import Stack from '@mui/material/Stack'
 import Drawer from '@mui/material/Drawer'
-import IconStar from '@mui/icons-material/Star'
+import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import IconStarBorder from '@mui/icons-material/StarBorder'
 import IconCheckCircle from '@mui/icons-material/CheckCircle'
+import IconBookmarkAdded from '@mui/icons-material/BookmarkAdded'
+import IconBookmarkBorder from '@mui/icons-material/BookmarkBorder'
 import IconRadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
 
 import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
 
-import DetailTask from '../DetailTask/DetailTask'
+import DetailTask from './DetailTask'
 
 type TypeProps = {
   task: TypeTaskList
@@ -67,27 +68,31 @@ const TaskCard = (props: TypeProps) => {
           alignItems='center'
           spacing={8}
         >
-          <IconButton
-            size='small'
-            onClick={handleCompleteTaskButtonClick}
-          >
-            { task.isDone ?
-              <IconCheckCircle color='primary'/> :
-              <IconRadioButtonUnchecked color='primary'/> }
-          </IconButton>
+          <Tooltip title='Mark as completed'>
+            <IconButton
+              size='small'
+              onClick={handleCompleteTaskButtonClick}
+            >
+              { task.isDone ?
+                <IconCheckCircle color='primary'/> :
+                <IconRadioButtonUnchecked color='primary'/> }
+            </IconButton>
+          </Tooltip>
           <Typography className={`${task.isDone ? 'line-through' : 'no-underline'}`}>
             {task.title}
           </Typography>
         </Stack>
 
-        <IconButton
-          size='small'
-          onClick={handleMarkAsImportantButtonClick}
-        >
-          { task.isImportant ?
-            <IconStar color='primary'/> :
-            <IconStarBorder color='primary'/> }
-        </IconButton>
+        <Tooltip title='Mark as important'>
+          <IconButton
+            size='small'
+            onClick={handleMarkAsImportantButtonClick}
+          >
+            { task.isImportant ?
+              <IconBookmarkAdded color='primary'/> :
+              <IconBookmarkBorder color='primary'/> }
+          </IconButton>
+        </Tooltip>
       </Stack>
 
 

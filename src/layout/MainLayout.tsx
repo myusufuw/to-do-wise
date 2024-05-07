@@ -1,12 +1,16 @@
-import { ReactNode } from 'react'
+import { useContext } from 'react'
+import { Outlet } from 'react-router-dom'
 
 import Stack from '@mui/material/Stack'
 
-import AppBar from 'src/components/AppBar/AppBar'
-import Drawer from 'src/components/Drawer/Drawer'
+import { MainContext } from 'src/context/MainContext'
 
-const MainLayout = (props: {children: ReactNode}) => {
-  const { children } = props
+import AppBar from 'src/components/AppBar'
+import Drawer from 'src/components/Drawer'
+import Snackbar from 'src/components/SnackBar'
+
+const MainLayout = () => {
+  const { snackbarObject, setSnackbarObject } = useContext(MainContext)
 
   return (
     <Stack
@@ -24,9 +28,17 @@ const MainLayout = (props: {children: ReactNode}) => {
         <AppBar/>
 
         <Stack>
-          {children}
+          <Outlet/>
         </Stack>
       </Stack>
+
+      <Snackbar
+        open={snackbarObject.open}
+        setToast={setSnackbarObject}
+        severity={snackbarObject.severity}
+        title={snackbarObject.title}
+        message={snackbarObject.message}
+      />
     </Stack>
   )
 }

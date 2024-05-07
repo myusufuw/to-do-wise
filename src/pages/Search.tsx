@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import Stack from '@mui/material/Stack'
 import IconButton from '@mui/material/IconButton'
@@ -8,16 +8,20 @@ import IconArrowBack from '@mui/icons-material/ArrowBack'
 
 import { MainContext } from 'src/context/MainContext'
 
-import TaskCard from 'src/components/TaskCard/TaskCard'
+import TaskCard from 'src/components/TaskCard'
 
 const Search = () => {
   const { taskList } = useContext(MainContext)
-  const { query } = useParams()
-  const navigate = useNavigate()
+  const [ searchParams ] = useSearchParams()
+  const query = searchParams.get('q')
 
   let filteredTaskList
 
-  if(query) filteredTaskList = taskList.filter(task => task.title.includes(query))
+  if(query) filteredTaskList = taskList
+    .filter(task => task.title
+      .toLowerCase()
+      .replace(' ', '')
+      .includes(query))
 
   return (
     <Stack p={24}>
@@ -28,9 +32,11 @@ const Search = () => {
         spacing={8}
         mb={24}
       >
-        <IconButton onClick={() => navigate('/')}>
-          <IconArrowBack/>
-        </IconButton>
+        <Link to='/'>
+          <IconButton>
+            <IconArrowBack/>
+          </IconButton>
+        </Link>
 
         <Typography color='primary' variant='h6'>
           Searching for "{query}"

@@ -3,17 +3,21 @@ import { useState, FormEvent, useContext } from 'react'
 
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
+import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import IconButton from '@mui/material/IconButton'
+import IconClear from '@mui/icons-material/Clear'
 import AddTaskIcon from '@mui/icons-material/AddTask'
-import IconBookmarkAdd from '@mui/icons-material/BookmarkAdd'
+import InputAdornment from '@mui/material/InputAdornment'
 import IconCalendarMonth from '@mui/icons-material/CalendarMonth'
+import IconBookmarkAdded from '@mui/icons-material/BookmarkAdded'
+import IconBookmarkBorder from '@mui/icons-material/BookmarkBorder'
 
 import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
 import { generateRandomId } from 'src/utilities/string'
 
-import DatePicker from '../DatePicker/DatePicker'
+import DatePicker from './DatePicker'
 
 const CraeateTask = () => {
   const { taskList, setTaskList, showSnackbar } = useContext(MainContext)
@@ -24,13 +28,13 @@ const CraeateTask = () => {
     isImportant: false,
     isDone: false,
     note: '',
-    id: generateRandomId(8)
+    id: generateRandomId(5)
   }
 
   const [ isDatePickerOpen, setIsDatePickerOpen ] = useState(false)
   const [ newTaskForms, setNewTaskForms ] = useState({ ...initialNewTaskForms })
 
-  const handleNewTaskFormChange = (objectName: string, value: string | boolean | Date) => {
+  const handleNewTaskFormChange = (objectName: string, value: string | boolean | Date | null) => {
     setNewTaskForms(current => ({
       ...current,
       [objectName]: value
@@ -74,22 +78,51 @@ const CraeateTask = () => {
       </Stack>
 
       <Stack className='py-3 px-4 flex-row justify-between'>
-        <Stack direction='row'>
-          <IconButton
-            size='small'
-            disableRipple
-            onClick={() => setIsDatePickerOpen(true)}
-          >
-            <IconCalendarMonth color={newTaskForms.dueDate ? 'primary' : 'inherit'}/>
-          </IconButton>
+        <Stack direction='row' spacing={12} alignItems='flex-end'>
+          <Stack direction='row'>
+            <Tooltip title='Add due date'>
+              <IconButton
+                size='small'
+                disableRipple
+                onClick={() => setIsDatePickerOpen(true)}
+              >
+                <IconCalendarMonth color={newTaskForms.dueDate ? 'primary' : 'inherit'}/>
+              </IconButton>
+            </Tooltip>
 
-          <IconButton
-            size='small'
-            disableRipple
-            onClick={() => handleNewTaskFormChange('isImportant', !newTaskForms.isImportant)}
-          >
-            <IconBookmarkAdd color={newTaskForms.isImportant ? 'primary' : 'inherit'}/>
-          </IconButton>
+            { newTaskForms.dueDate &&
+            <TextField
+              disabled
+              className=' w-[150px]'
+              value={moment(newTaskForms.dueDate).format('DD / MM / YYYY')}
+              size='small'
+              variant='standard'
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position='end'>
+                    <IconButton
+                      color='error'
+                      onClick={() => handleNewTaskFormChange('dueDate', null)}
+                    >
+                      <IconClear />
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
+            />}
+          </Stack>
+
+          <Tooltip title='Mark as important'>
+            <IconButton
+              size='small'
+              disableRipple
+              onClick={() => handleNewTaskFormChange('isImportant', !newTaskForms.isImportant)}
+            >
+              { newTaskForms.isImportant ?
+                <IconBookmarkAdded color='primary'/> :
+                <IconBookmarkBorder/>}
+            </IconButton>
+          </Tooltip>
         </Stack>
 
         <Button

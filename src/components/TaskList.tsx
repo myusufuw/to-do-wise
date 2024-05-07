@@ -8,7 +8,7 @@ import IconKeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 
 import { MainContext } from 'src/context/MainContext'
 
-import TaskCard from '../TaskCard/TaskCard'
+import TaskCard from './TaskCard'
 
 const TaskList = () => {
   const { taskList } = useContext(MainContext)

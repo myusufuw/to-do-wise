@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack'
 
-import TaskList from 'src/components/TaskList/TaskList'
-import CreateTask from 'src/components/CreateTask/CreateTask'
+import TaskList from 'src/components/TaskList'
+import CreateTask from 'src/components/CreateTask'
 
 const Task = () => {
 

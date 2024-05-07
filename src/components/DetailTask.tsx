@@ -23,7 +23,7 @@ import IconRadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
 import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
 
-import DatePicker from '../DatePicker/DatePicker'
+import DatePicker from './DatePicker'
 
 type TypeProps = {
   taskId: string,

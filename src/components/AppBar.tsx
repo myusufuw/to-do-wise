@@ -20,7 +20,7 @@ const AppBar = () => {
   const handleSearchTaskList = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const searchElement = document.getElementById('searchElement') as HTMLInputElement | null
-    if (searchElement) navigate(`/search/${searchElement.value}`)
+    if (searchElement) navigate(`/search?q=${searchElement.value}`)
   }
 
   return (
