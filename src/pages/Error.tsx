@@ -5,6 +5,8 @@ import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 
+import ErrorImage from 'src/assets/404.png'
+
 const Error = () => {
   return (
     <Stack
@@ -14,9 +16,12 @@ const Error = () => {
       justifyContent='center'
       spacing={12}
     >
-      <Typography variant='h3' color='error'>
-        404
-      </Typography>
+      <Stack
+        component='img'
+        src={ErrorImage}
+        alt='404-image'
+        width={400}
+      />
       <Typography variant='h5'>
         Sorry, we couldn't find the page you're looking for 🙈
       </Typography>
