@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack'
 
 import { MainContext } from 'src/context/MainContext'
 
-import TaskCard from 'src/components/TaskCard'
+import TaskCard from 'src/components/task-card'
 
 const Planned = () => {
   const { taskList } = useContext(MainContext)

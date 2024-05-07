@@ -17,7 +17,7 @@ import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
 import { generateRandomId } from 'src/utilities/string'
 
-import DatePicker from './DatePicker'
+import DatePicker from './date-picker'
 
 const CraeateTask = () => {
   const { taskList, setTaskList, showSnackbar } = useContext(MainContext)

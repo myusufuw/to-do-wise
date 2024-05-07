@@ -8,12 +8,12 @@ import { ThemeProvider, StyledEngineProvider } from '@mui/material/styles'
 import theme from 'src/constants/theme.ts'
 
 import './index.css'
-import Task from './pages/Task'
-import Error from './pages/Error'
-import Search from './pages/Search'
-import Planned from './pages/Planned'
-import Important from './pages/Important'
-import MainLayout from './layout/MainLayout'
+import Task from './pages/task'
+import Error from './pages/error'
+import Search from './pages/search'
+import Planned from './pages/planned'
+import Important from './pages/imortant'
+import MainLayout from './layout/main-layout'
 import { MainContextProvider } from './context/MainContext'
 
 const router = createBrowserRouter([

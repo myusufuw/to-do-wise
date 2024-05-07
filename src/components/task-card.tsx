@@ -13,7 +13,7 @@ import IconRadioButtonUnchecked from '@mui/icons-material/RadioButtonUnchecked'
 import { TypeTaskList } from 'src/constants/types'
 import { MainContext } from 'src/context/MainContext'
 
-import DetailTask from './DetailTask'
+import DetailTask from './detail-task'
 
 type TypeProps = {
   task: TypeTaskList

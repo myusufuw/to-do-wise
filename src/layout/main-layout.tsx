@@ -5,9 +5,9 @@ import Stack from '@mui/material/Stack'
 
 import { MainContext } from 'src/context/MainContext'
 
-import AppBar from 'src/components/AppBar'
-import Drawer from 'src/components/Drawer'
-import Snackbar from 'src/components/SnackBar'
+import Drawer from 'src/components/drawer'
+import AppBar from 'src/components/app-bar'
+import Snackbar from 'src/components/snackbar'
 
 const MainLayout = () => {
   const { snackbarObject, setSnackbarObject } = useContext(MainContext)

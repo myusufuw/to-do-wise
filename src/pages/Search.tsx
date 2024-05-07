@@ -8,7 +8,7 @@ import IconArrowBack from '@mui/icons-material/ArrowBack'
 
 import { MainContext } from 'src/context/MainContext'
 
-import TaskCard from 'src/components/TaskCard'
+import TaskCard from 'src/components/task-card'
 
 const Search = () => {
   const { taskList } = useContext(MainContext)
